@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
@@ -31,6 +32,9 @@ app.set('view engine', 'Handlebars');
 //Bodyparser middleware
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
+
+//Static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Method override middleware
 app.use(methodOverride('_method'));
