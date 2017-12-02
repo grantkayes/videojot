@@ -4,24 +4,28 @@ const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 const methodOverride = require('method-override');
+const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const app = express();
+const port = 5000;
 
 //Load routes
 const ideas = require('./routes/ideas');
 const users = require('./routes/users');
 
+//Passport config
+require('./config/passport')(passport);
+
 //Use Bluebird promise as opposed to standard ES6
 mongoose.Promise = require('bluebird');
+
 //Connect to mongoose
 mongoose.connect('mongodb://localhost/vidjot-dev', {
 	useMongoClient: true
 })
 .then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err));
-
-const port = 5000;
 
 //Handlebars middleware
 app.engine('Handlebars', exphbs({
