@@ -8,7 +8,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 //Load routes
 const ideas = require('./routes/ideas');
@@ -16,12 +16,14 @@ const users = require('./routes/users');
 
 //Passport config
 require('./config/passport')(passport);
+//DB config
+const db = require('./config/database')
 
 //Use Bluebird promise as opposed to standard ES6
 mongoose.Promise = require('bluebird');
 
 //Connect to mongoose
-mongoose.connect('mongodb://localhost/vidjot-dev', {
+mongoose.connect(db.mongoURI, {
 	useMongoClient: true
 })
 .then(() => console.log('MongoDB Connected...'))
