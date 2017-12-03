@@ -30,9 +30,9 @@ mongoose.connect(db.mongoURI, {
 .catch(err => console.log(err));
 
 //Handlebars middleware
-app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.engine('.handlebars', exphbs({ defaultLayout: 'main', extname: '.handlebars' }));
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', '.hbs');
+app.set('view engine', '.handlebars');
 
 //Bodyparser middleware
 app.use(bodyparser.urlencoded({ extended: false }));
