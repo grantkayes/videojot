@@ -70,7 +70,7 @@ app.use(function(req, res, next){
 //Index route
 app.get('/', (req, res) =>{
 	const title = 'Welcome1';
-	res.render('index', {
+	res.render('/index', {
 	  title: title
 	});
 });
