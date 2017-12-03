@@ -10,6 +10,8 @@ const session = require('express-session');
 const app = express();
 const port = process.env.PORT || 5000;
 
+//
+
 //Load routes
 const ideas = require('./routes/ideas');
 const users = require('./routes/users');
